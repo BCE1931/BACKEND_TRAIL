@@ -44,6 +44,16 @@
 		</dependency>
 	</dependencies>
 
+<!--	name → workflow title-->
+
+<!--	jobs → big tasks-->
+
+<!--	steps → small steps in tasks-->
+
+<!--	uses → prebuilt reusable actions-->
+
+<!--	with → options/config for the action-->
+
 	<build>
 		<finalName>docker-demo-2</finalName>
 		<plugins>
