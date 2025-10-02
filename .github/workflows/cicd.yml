@@ -1,7 +1,7 @@
 name: ci/cd pipeline actions
 
-on:
-  push:
+on: #event that triggers the workflow.
+  push: #whenever code is pushed to the repository.
     branches:
       - master
 
@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  #Pulls your code from GitHub into the runner so the workflow can access it.
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v3 #Installs Java 21 using Temurin distribution on the runner.
         with:
           distribution: "temurin"
           java-version: "21"
       - name: Build project
-        run: mvn clean install -DskipTests
+        run: mvn clean install -DskipTests  # Runs Maven commands to compile your Java code and generate a JAR file.
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
+        uses: actions/upload-artifact@v4 #Saves the built JAR as an artifact so other jobs (like deploy) can use it.
+        with: #artifact is basically a file or set of files produced by a build
           name: dockerdemo
-          path: ${{ github.workspace }}/target/*.jar
+          path: ${{ github.workspace }}/target/*.jar  #above build jar file stored here for 90 days
 
   deploy:
     runs-on: ubuntu-latest
@@ -31,10 +31,14 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: dockerdemo
+          name: dockerdemo #names must be same uploading and downloading of jar file from artifact
       - name: Deploying to Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: PRACTISEAPP1
           publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE }}
           package: '*.jar'
+
+
+  #https://www.youtube.com/watch?v=WcXt_UONkz4 (above code video)
+  # https://www.youtube.com/watch?v=ly2a9Pnl1xw (issue in downloading publish profile in azure)
