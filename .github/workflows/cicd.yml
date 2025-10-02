@@ -38,17 +38,17 @@ jobs:
           app-name: PRACTISEAPP1
           publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE }}
           package: '*.jar'
-      - name: Configure Azure App Settings
-        uses: azure/appservice-settings@v1
-        with:
-          app-name: PRACTISEAPP1
-          app-settings-json: |
-            [
-              { "name": "DB_HOST", "value": "${{ secrets.DB_HOST }}" },
-              { "name": "DB_NAME", "value": "${{ secrets.DB_NAME }}" },
-              { "name": "DB_USERNAME", "value": "${{ secrets.DB_USERNAME }}" },
-              { "name": "DB_PASSWORD", "value": "${{ secrets.DB_PASSWORD }}" }
-            ]
+#      - name: Configure Azure App Settings
+#        uses: azure/appservice-settings@v1
+#        with:
+#          app-name: PRACTISEAPP1
+#          app-settings-json: |
+#            [
+#              { "name": "DB_HOST", "value": "${{ secrets.DB_HOST }}" },
+#              { "name": "DB_NAME", "value": "${{ secrets.DB_NAME }}" },
+#              { "name": "DB_USERNAME", "value": "${{ secrets.DB_USERNAME }}" },
+#              { "name": "DB_PASSWORD", "value": "${{ secrets.DB_PASSWORD }}" }
+#            ]
   
   
 
