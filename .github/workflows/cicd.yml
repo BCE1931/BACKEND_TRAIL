@@ -20,7 +20,7 @@ jobs :
       - name : build-project
         run :  mvn clean install -DskipTests
       - name : upload articraft for deployment job
-        uses : actions/upload-artifact@v2
+        uses : actions/upload-artifact@v3
         with :
           name : dockerdemo
           path : ${{ github.workspace }}/target/*.jar
@@ -30,7 +30,7 @@ jobs :
     needs : build
     steps :
       - name : download artifact from build job
-        uses : actions/download-artifact@v2
+        uses : actions/download-artifact@v3
         with :
           name : dockerdemo
       - name : deploying to azure
