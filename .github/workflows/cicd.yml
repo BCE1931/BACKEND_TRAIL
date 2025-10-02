@@ -33,7 +33,7 @@ jobs:
         with:
           name: dockerdemo
       - name: Deploying to Azure
-        uses: azure/webapp-deploy@v2
+        uses: azure/webapps-deploy@v2
         with:
           app-name: PRACTISEAPP1
           publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE }}
